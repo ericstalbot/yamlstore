@@ -1,0 +1,23 @@
+
+
+body {margin-top: 5px;}
+
+.top-level {max-width: 800px; margin-left: auto; margin-right: auto}
+
+
+.mono {
+    font-family: monospace;
+    
+    
+}
+
+
+textarea {
+    
+    resize: vertical;
+    
+    
+    
+}
+
+

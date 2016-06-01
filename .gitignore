@@ -60,3 +60,8 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
+
+run_manual_testing.py
+Command Prompt.*
+yamlstore/scratch/*
+desktop.ini
