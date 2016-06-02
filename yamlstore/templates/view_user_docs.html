@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block body %}
+
+    <h1>{{ user.username }}</h1>
+    
+    {% for doc in user.yaml_documents %}
+        
+        <a href="{{ url_for('view_yaml_doc', doc_id=doc.id) }}">{{ doc.titile }}</a>
+        
+    {% endfor %}
+
+{% endblock %}

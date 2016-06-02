@@ -7,13 +7,38 @@ from yamlstore import app
 from yamlstore.models import YamlDocument, EditDocumentForm
 from yamlstore.yaml_handling import InvalidYaml, process_yaml
 
+@app.route('/')
+def index():
+    pass
+
+
+@app.route('/users')
+def view_users():
+    pass
+    
 
 @app.route('/users/<int:user_id>/docs')
-def view_user_documents():
-    return current_user.username
-    #if logged in, show list of document titles
-    #else, see other to log in page
+def view_user_docs(user_id):
+    user = User.query.get_or_404(user_id)
+    return render_template('view_user_docs.html', user=user)
+        
+@app.route('/docs')
+def view_yaml_docs():
+    pass
 
+@app.route('/docs/<int:doc_id>')
+def view_yaml_doc(doc_id):
+    doc = YamlDocument.query.get_or_404(doc_id) 
+    
+    belongs_to_current_user = doc.user == current_user
+    
+    return render_template('view_doc.html', doc=doc, belongs_to_current_user=belongs_to_current_user)
+
+
+@app.route('/docs/<int:doc_id>/json')
+def get_json(doc_id):
+    doc = YamlDocument.query.get_or_404(doc_id) 
+    return doc.json, {'Content-type':'application/json'}    
 
 @app.route('/new', methods=['POST'])
 @login_required
@@ -24,24 +49,6 @@ def new_yaml_doc():
     redirect(url_for('edit_yaml_doc', doc_id=doc.id))
 
 
-@app.route('/docs/<int:doc_id>')
-def view_yaml_doc(doc_id):
-    doc = YamlDocument.query.get_or_404(doc_id) 
-    
-    belongs_to_current_user = doc.user == current_user
-    
-    return render_template('view_doc.html', doc=doc, belongs_to_current_user=belongs_to_current_user)
-    
-    
-
-@app.route('/docs/<int:doc_id>/json')
-def get_json(doc_id):
-    doc = YamlDocument.query.get_or_404(doc_id) 
-    return doc.json, {'Content-type':'application/json'}
-
-
-
-    
 @app.route('/docs/<int:doc_id>/edit', methods=['GET', 'PUT'])
 @login_required    
 def edit_yaml_doc(doc_id):
@@ -73,3 +80,5 @@ def edit_yaml_doc(doc_id):
                 
     
     return render_template('edit_doc.html', form=form)
+    
+    
