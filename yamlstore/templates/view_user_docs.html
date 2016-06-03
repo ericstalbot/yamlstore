@@ -1,22 +1,38 @@
 {% extends "layout.html" %}
 {% block body %}
 
-    <h1>{{ user.username }}</h1>
+
+    <div class="test0">
     
-    {% if current_user == user %}
-        <form method="POST" action="/docs/new">
-            <button type="submit" class="btn btn-primary">New</button>
-        </form>
-    {% endif %}
-    
-    
-    
-    
-    {% for doc in user.yaml_documents %}
+        <div class="h1 test1">
+            {{ user.username }}
+        </div>
         
-        <a href="{{ url_for('view_yaml_doc', doc_id=doc.id) }}">{{ doc.title }}</a>
         
-    {% endfor %}
+        {% if current_user == user %}
+            <div class="test test2">
+                <form method="POST" action="/docs/new">
+                    <button type="submit" class="btn btn-primary">New Document</button>
+                </form>
+            </div>
+        {% endif %}
+        
+    </div>
+
+
+
+    
+    
+    <ul class="list-group">
+    
+        {% for doc in user.yaml_documents %}
+            
+            <li class="list-group-item">
+                <a href="{{ url_for('view_yaml_doc', doc_id=doc.id) }}">{{ doc.title }}</a>
+            </li>
+        {% endfor %}
+    
+    </ul>
 
     
     

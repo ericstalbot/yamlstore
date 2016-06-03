@@ -2,7 +2,7 @@
 
 body {margin-top: 5px;}
 
-.top-level {max-width: 800px; margin-left: auto; margin-right: auto}
+.top-level {max-width: 800px; margin-left: auto; margin-right: auto; padding: 0px;}
 
 
 .mono {
@@ -20,4 +20,25 @@ textarea {
     
 }
 
+.test0{
+    
+    position: relative;
+    
+    
+}
 
+.test1 {
+    
+    display: inline-block;
+    
+    
+}
+
+.test2{
+    
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    top: 23px
+    
+}

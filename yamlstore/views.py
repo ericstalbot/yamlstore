@@ -38,14 +38,7 @@ def view_yaml_doc(doc_id):
 @app.route('/docs/<int:doc_id>/json')
 def get_json(doc_id):
     
-    doc = YamlDocument.query.get_or_404(doc_id) 
-    print(doc)
-    print(doc.json)
-    
-    
-    print(json.loads(doc.json))
-    
-    
+    doc = YamlDocument.query.get_or_404(doc_id)     
     return jsonify(json.loads(doc.json))
 
 @app.route('/docs/new', methods=['POST'])
