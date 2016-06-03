@@ -1,6 +1,6 @@
 from flask_wtf import Form
 from wtforms import StringField, TextAreaField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, Length
 
 from flask_user import UserMixin
 

@@ -2,10 +2,10 @@
 {% block body %}
 
     {% for k, v in form.errors.items() %}
-        <div class="alert alert-warning" role="alert">{{ k } } {{ v }}</div>
+        <div class="alert alert-warning" role="alert">{{ k }} {{ v }}</div>
     {% endfor %}
 
-    <form method="PUT" action="/">
+    <form method="POST" action="">
         {{ form.hidden_tag() }}
         
         <div class="form-group">
@@ -16,11 +16,6 @@
         </div>
         <button type="submit" class="btn btn-primary pull-right">Save</button>
     </form>
-
-
-
-
-
 
 
 {% endblock %}
