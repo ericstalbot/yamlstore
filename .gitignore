@@ -61,10 +61,12 @@ target/
 #Ipython Notebook
 .ipynb_checkpoints
 
+
 run_manual_testing.py
 Command Prompt.*
 yamlstore/scratch/*
-desktop.ini
+desktop.ini
+application.py
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
