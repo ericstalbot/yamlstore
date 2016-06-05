@@ -64,4 +64,8 @@ target/
 run_manual_testing.py
 Command Prompt.*
 yamlstore/scratch/*
-desktop.ini
+desktop.ini
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
