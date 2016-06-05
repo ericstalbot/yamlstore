@@ -5,7 +5,10 @@ from flask_user import SQLAlchemyAdapter, UserManager
 app = Flask(__name__)
 db = SQLAlchemy(app)
 
-def create_app(**config):    
+def create_app(**config):
+
+    
+    app.config.from_object('yamlstore.default_config')
     app.config.update(**config)
     
     from yamlstore.models import User
