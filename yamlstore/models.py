@@ -15,8 +15,8 @@ class User(db.Model, UserMixin):
     #reset_password_token = db.Column(db.String(100), nullable=False, default='')
 
     # User Email information
-    #email = db.Column(db.String(255), nullable=False, unique=True)
-    #confirmed_at = db.Column(db.DateTime())
+    email = db.Column(db.String(255), nullable=False, unique=True)
+    confirmed_at = db.Column(db.DateTime())
 
     # User information
     is_enabled = db.Column(db.Boolean(), nullable=False, default=False)
