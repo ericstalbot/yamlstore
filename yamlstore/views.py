@@ -9,12 +9,13 @@ from yamlstore.yaml_handling import InvalidYaml, process_yaml
 
 @app.route('/')
 def index():
-    pass
+    return redirect(url_for('view_users'))
 
 
 @app.route('/users')
 def view_users():
-    pass
+    users = User.query.all()
+    return render_template('view_users.html', users=users)
     
 
 @app.route('/users/<int:user_id>/docs')
