@@ -68,7 +68,7 @@ yamlstore/scratch/*
 desktop.ini
 application.py
 setpythonexepath.bat
-yamlstore_virtualenv
+yamlstore_virtualenv/
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
