@@ -1,16 +1,19 @@
 {% extends "layout.html" %}
 {% block body %}
 
-    {% for k, v in form.errors.items() %}
-        <div class="alert alert-warning" role="alert">{{ k }} {{ v }}</div>
-    {% endfor %}
-
     <form method="POST" action="">
         {{ form.hidden_tag() }}
         
+        
+        {% for error in form.title.errors %}
+            <div class="alert alert-warning" role="alert">{{ error }}</div>
+        {% endfor %}
         <div class="form-group">
             {{ form.title(class="form-control input-lg", placeholder='document title', ) }}
         </div>
+        {% for error in form.document.errors %}
+            <div class="alert alert-warning" role="alert">There's a problem:<pre>{{ error }}</pre></div>
+        {% endfor %}
         <div class="form-group">
             {{ form.document(class="form-control mono", rows="20", placeholder='yaml data') }}
         </div>
