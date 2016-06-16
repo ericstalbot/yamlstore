@@ -19,9 +19,9 @@
 
     <pre>{{ doc.document }}</pre>
     
-    
+    <span class="label label-default">JSON</span>
     <a href="{{ url_for('get_json', _external=True, doc_id=doc.id) }}" target="_blank">
-        <span class="label label-default">JSON</span> {{ url_for('get_json', _external=True, doc_id=doc.id) }}
+         {{ url_for('get_json', _external=True, doc_id=doc.id) }}
     </a>
 
 {% endblock %}
