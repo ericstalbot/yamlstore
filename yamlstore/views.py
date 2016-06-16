@@ -59,35 +59,18 @@ def edit_yaml_doc(doc_id):
     
     if doc.user != current_user:
         return 'to do: better response here'
-    
+        
     form = EditDocumentForm(request.form, doc)
     
-    
-    valid=None
-    if (request.method == 'POST') and (form.validate()):
+    if (request.method == 'POST') and form.validate():
         
-        try:
-            json_string = process_yaml(form.document.data)
-        except InvalidYaml as e:
-            form.errors['document'].append(e.msg) # can i do this?
-            valid = False
-        else:
-            valid = True
-            
-    if valid:
-        
-        form.populate_obj(doc)
-        print(json_string)
-        print(type(json_string))
-        doc.json = json_string
-        print(doc.json)
-        
+        doc.title = form.title.data
+        doc.document = form.document.data
+        doc.json = form.document.json_string
         
         db.session.commit()
+        
         flash('yaml document saved', 'alert-success')
         return redirect(url_for('view_yaml_doc', doc_id=doc_id))
                 
-    
     return render_template('edit_doc.html', form=form)
-    
-    

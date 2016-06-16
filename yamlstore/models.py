@@ -1,10 +1,15 @@
 from flask_wtf import Form
-from wtforms import StringField, TextAreaField
+from wtforms import StringField, TextAreaField, Field, ValidationError
+from wtforms.widgets import TextArea
 from wtforms.validators import DataRequired, Length
 
 from flask_user import UserMixin
 
 from yamlstore import db
+    
+from flask import json
+import yaml    
+    
     
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -45,15 +50,30 @@ class YamlDocument(db.Model):
         self.user_id = user_id
         
 
+class YamlDocumentField(TextAreaField):
+    def __init__(self, label='', validators=None, **kwargs):
+        super(TextAreaField, self).__init__(label, validators, **kwargs)
+        self.data=None
+        self.json_string=None
+    
+    def process_formdata(self, valuelist):
+        if valuelist:    
+            self.data = valuelist[0]
+            try:
+                data = yaml.safe_load(self.data)
+                json_string = json.htmlsafe_dumps(data, indent='  ')
+            except yaml.YAMLError as e: #to do: json error here
+                self.json_string = None
+                raise ValidationError(str(e))
+            else:
+                self.json_string = json_string
+        else:
+            self.data = None
+            self.json_string = None
+            
 class EditDocumentForm(Form):
     title = StringField('title', validators=[
         DataRequired(),
         Length(max=99)])
-    document = TextAreaField('document', validators=[
+    document = YamlDocumentField('document', validators=[
         Length(max=9999)])
-        
-    
-    
-    
-    
-    
